@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin the Wheel!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="title">Spin the Wheel!</h1>
+    <div class="container">
+        <div class="spin-btn">Spin</div>
+        <div class="wheel">
+            <div class="number" style="--i:1; --clr:#ff0000;"><span contenteditable="true">1</span></div>
+            <div class="number" style="--i:2; --clr:#00ff00;"><span contenteditable="true">2</span></div>
+            <div class="number" style="--i:3; --clr:#0000ff;"><span contenteditable="true">3</span></div>
+            <div class="number" style="--i:4; --clr:#d63e92;"><span contenteditable="true">4</span></div>
+            <div class="number" style="--i:5; --clr:#daa520;"><span contenteditable="true">5</span></div>
+            <div class="number" style="--i:6; --clr:#4169e1;"><span contenteditable="true">6</span></div>
+            <div class="number" style="--i:7; --clr:#20b2aa;"><span contenteditable="true">7</span></div>
+            <div class="number" style="--i:8; --clr:#db7093;"><span contenteditable="true">8</span></div>
+            <div class="number" style="--i:9; --clr:#164964;"><span contenteditable="true">9</span></div>
+            <div class="number" style="--i:10; --clr:#b6db70;"><span contenteditable="true">10</span></div>
+        </div>
+    </div>
+    <button class="change-clr-btn js-change-clr-btn">Change color</button>
+
+    <script>
+        let wheel = document.querySelector('.wheel')
+        let spinBtn = document.querySelector('.spin-btn')
+        let value = Math.floor(Math.random() * 3600)
+
+        let isRotating = false;
+
+        spinBtn.addEventListener('click', () => {
+            if (!isRotating) {
+                wheel.style.transform = `rotate(${value}deg)`;
+                // Maybe Math.ceil()
+                value += Math.floor(Math.random() * 3600)
+                isRotating = true
+
+            } else if (isRotating) {
+                return
+            }
+            setTimeout(() => {
+                isRotating = false
+            }, 5000)
+        })
+        document.querySelector('.js-change-clr-btn').addEventListener('click', () => {
+            const number = document.querySelectorAll('.number')
+
+            for (i = 0; i < number.length; i++) {
+                let r = Math.floor(Math.random() * 255)
+                let g = Math.floor(Math.random() * 255)
+                let b = Math.floor(Math.random() * 255)
+                number[i].style.backgroundColor = `rgb(${r},${g},${b})`;
+
+            }
+        })
+    </script>
+</body>
+
+</html>
