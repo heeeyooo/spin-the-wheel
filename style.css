@@ -13,8 +13,9 @@ body {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100dvh;
     background-color: #333;
+    overflow: hidden;
 }
 
 .title {

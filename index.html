@@ -26,40 +26,7 @@
         </div>
     </div>
     <button class="change-clr-btn js-change-clr-btn">Change color</button>
-
-    <script>
-        let wheel = document.querySelector('.wheel')
-        let spinBtn = document.querySelector('.spin-btn')
-        let value = Math.floor(Math.random() * 3600)
-
-        let isRotating = false;
-
-        spinBtn.addEventListener('click', () => {
-            if (!isRotating) {
-                wheel.style.transform = `rotate(${value}deg)`;
-                // Maybe Math.ceil()
-                value += Math.floor(Math.random() * 3600)
-                isRotating = true
-
-            } else if (isRotating) {
-                return
-            }
-            setTimeout(() => {
-                isRotating = false
-            }, 5000)
-        })
-        document.querySelector('.js-change-clr-btn').addEventListener('click', () => {
-            const number = document.querySelectorAll('.number')
-
-            for (i = 0; i < number.length; i++) {
-                let r = Math.floor(Math.random() * 255)
-                let g = Math.floor(Math.random() * 255)
-                let b = Math.floor(Math.random() * 255)
-                number[i].style.backgroundColor = `rgb(${r},${g},${b})`;
-
-            }
-        })
-    </script>
+    <script src="app.js"></script>
 </body>
 
 </html>
