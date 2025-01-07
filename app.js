@@ -10,39 +10,39 @@ let data = getData() || [
         bgColor: "",
     },
     {
-        title: "1",
+        title: "2",
         bgColor: "",
     },
     {
-        title: "1",
+        title: "3",
         bgColor: "",
     },
     {
-        title: "1",
+        title: "4",
         bgColor: "",
     },
     {
-        title: "1",
+        title: "5",
         bgColor: "",
     },
     {
-        title: "1",
+        title: "6",
         bgColor: "",
     },
     {
-        title: "1",
+        title: "7",
         bgColor: "",
     },
     {
-        title: "1",
+        title: "8",
         bgColor: "",
     },
     {
-        title: "1",
+        title: "9",
         bgColor: "",
     },
     {
-        title: "1",
+        title: "10",
         bgColor: "",
     },
 ];
@@ -57,9 +57,17 @@ number.forEach((elem, index) => {
     elem.style.backgroundColor = data[index].bgColor;
 });
 
-number.forEach((elem, index) => {
-    elem.addEventListener("input", () => {
-        elem.childNodes.forEach((child) => {
+number.forEach((elem) => {
+    elem.childNodes.forEach((child) => {
+        child.addEventListener("focus", () => {
+            child.textContent = "";
+        });
+    });
+});
+
+number.forEach((elem) => {
+    elem.childNodes.forEach((child, index) => {
+        child.addEventListener("input", () => {
             data[index].title = child.textContent;
             saveData();
         });
@@ -67,7 +75,7 @@ number.forEach((elem, index) => {
 });
 
 function saveData() {
-    return localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("data", JSON.stringify(data));
 }
 
 function getData() {
