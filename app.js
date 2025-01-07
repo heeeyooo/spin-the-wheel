@@ -1,3 +1,5 @@
+addEventListener("touchstart", () => {}, true);
+
 let wheel = document.querySelector(".wheel");
 let spinBtn = document.querySelector(".spin-btn");
 let value = Math.floor(Math.random() * 3600);
@@ -57,16 +59,8 @@ number.forEach((elem, index) => {
     elem.style.backgroundColor = data[index].bgColor;
 });
 
-number.forEach((elem) => {
+number.forEach((elem, index) => {
     elem.childNodes.forEach((child) => {
-        child.addEventListener("focus", () => {
-            child.textContent = "";
-        });
-    });
-});
-
-number.forEach((elem) => {
-    elem.childNodes.forEach((child, index) => {
         child.addEventListener("input", () => {
             data[index].title = child.textContent;
             saveData();
