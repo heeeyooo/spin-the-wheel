@@ -49,24 +49,32 @@ let data = getData() || [
     },
 ];
 
-number.forEach((elem, index) => {
-    elem.childNodes.forEach((child) => {
-        child.textContent = data[index].title;
+function refreshData() {
+    number.forEach((elem, index) => {
+        elem.childNodes.forEach((child) => {
+            child.textContent = data[index].title;
+        });
     });
+}
+
+refreshData();
+
+document.querySelectorAll(".input").forEach((elem, index) => {
+    elem.value = data[index].title;
 });
 
 number.forEach((elem, index) => {
     elem.style.backgroundColor = data[index].bgColor;
 });
 
-number.forEach((elem, index) => {
-    elem.childNodes.forEach((child) => {
-        child.addEventListener("input", () => {
-            data[index].title = child.textContent;
-            saveData();
-        });
-    });
-});
+// number.forEach((elem, index) => {
+//     elem.childNodes.forEach((child) => {
+//         child.addEventListener("input", () => {
+//             data[index].title = child.textContent;
+//             saveData();
+//         });
+//     });
+// });
 
 function saveData() {
     localStorage.setItem("data", JSON.stringify(data));
@@ -100,4 +108,12 @@ document.querySelector(".js-change-clr-btn").addEventListener("click", () => {
             saveData();
         });
     }
+});
+
+document.querySelectorAll(".input").forEach((elem, index) => {
+    elem.addEventListener("input", () => {
+        data[index].title = elem.value;
+        saveData();
+        refreshData();
+    });
 });
