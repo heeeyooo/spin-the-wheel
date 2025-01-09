@@ -3,48 +3,48 @@ addEventListener("touchstart", () => {}, true);
 let wheel = document.querySelector(".wheel");
 let spinBtn = document.querySelector(".spin-btn");
 let value = Math.floor(Math.random() * 3600);
-const number = document.querySelectorAll(".number");
+const number = document.querySelectorAll(".cell");
 let isRotating = false;
 
 let data = getData() || [
     {
-        title: "1",
+        title: "",
         bgColor: "",
     },
     {
-        title: "2",
+        title: "",
         bgColor: "",
     },
     {
-        title: "3",
+        title: "",
         bgColor: "",
     },
     {
-        title: "4",
+        title: "",
         bgColor: "",
     },
     {
-        title: "5",
+        title: "",
         bgColor: "",
     },
     {
-        title: "6",
+        title: "",
         bgColor: "",
     },
     {
-        title: "7",
+        title: "",
         bgColor: "",
     },
     {
-        title: "8",
+        title: "",
         bgColor: "",
     },
     {
-        title: "9",
+        title: "",
         bgColor: "",
     },
     {
-        title: "10",
+        title: "",
         bgColor: "",
     },
 ];
@@ -52,37 +52,18 @@ let data = getData() || [
 function refreshData() {
     number.forEach((elem, index) => {
         elem.childNodes.forEach((child) => {
-            child.textContent = data[index].title;
+            child.value = data[index].title;
         });
+    });
+    document.querySelectorAll(".input").forEach((elem, index) => {
+        elem.value = data[index].title;
+    });
+    number.forEach((elem, index) => {
+        elem.style.backgroundColor = data[index].bgColor;
     });
 }
 
 refreshData();
-
-document.querySelectorAll(".input").forEach((elem, index) => {
-    elem.value = data[index].title;
-});
-
-number.forEach((elem, index) => {
-    elem.style.backgroundColor = data[index].bgColor;
-});
-
-// number.forEach((elem, index) => {
-//     elem.childNodes.forEach((child) => {
-//         child.addEventListener("input", () => {
-//             data[index].title = child.textContent;
-//             saveData();
-//         });
-//     });
-// });
-
-function saveData() {
-    localStorage.setItem("data", JSON.stringify(data));
-}
-
-function getData() {
-    return JSON.parse(localStorage.getItem("data"));
-}
 
 spinBtn.addEventListener("click", () => {
     if (!isRotating) {
@@ -97,6 +78,15 @@ spinBtn.addEventListener("click", () => {
         isRotating = false;
     }, 5000);
 });
+
+document.querySelectorAll(".input").forEach((elem, index) => {
+    elem.addEventListener("input", () => {
+        data[index].title = elem.value;
+        saveData();
+        refreshData();
+    });
+});
+
 document.querySelector(".js-change-clr-btn").addEventListener("click", () => {
     for (i = 0; i < number.length; i++) {
         let r = Math.floor(Math.random() * 255);
@@ -110,10 +100,10 @@ document.querySelector(".js-change-clr-btn").addEventListener("click", () => {
     }
 });
 
-document.querySelectorAll(".input").forEach((elem, index) => {
-    elem.addEventListener("input", () => {
-        data[index].title = elem.value;
-        saveData();
-        refreshData();
-    });
-});
+function saveData() {
+    localStorage.setItem("data", JSON.stringify(data));
+}
+
+function getData() {
+    return JSON.parse(localStorage.getItem("data"));
+}

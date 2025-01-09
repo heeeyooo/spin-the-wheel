@@ -7,6 +7,16 @@
     font-weight: 500;
 }
 
+input {
+    border: none;
+    text-align: center;
+    color: #fff;
+}
+
+input:focus {
+    outline: none;
+}
+
 button {
     font-family: inherit;
 }
@@ -93,7 +103,7 @@ body {
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.1, 1);
 }
 
-.container .wheel .number {
+.container .wheel .cell {
     position: absolute;
     width: 50%;
     aspect-ratio: 1/1;
@@ -106,29 +116,25 @@ body {
     align-items: center;
 }
 
-.container .wheel .number span {
+.container .wheel .cell input {
     transform: rotate(-135deg);
     font-size: 16px;
-    color: #fff;
+    background-color: transparent;
     -webkit-user-select: none;
     user-select: none;
 }
 
 .input {
     width: calc(100% - 20px);
-    border: none;
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.25);
-    color: #fff;
-    text-align: center;
     font-size: 16px;
 }
 
 .input:focus {
     background-color: rgba(255, 255, 255, 0.5);
-    outline: none;
 }
 
 ::placeholder {
